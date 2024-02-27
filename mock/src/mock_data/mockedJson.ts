@@ -34,3 +34,7 @@ export const userMap = new Map<string, string>();
 userMap.set("john", "johnpassword");
 userMap.set("alex", "alexpassword");
 userMap.set("bob", "bobpassword");
+
+export const resultMap = new Map<string, string[][]>();
+resultMap.set("MA 2", [["847 Thayer", "Boston", "MA", "788477"]]);
+// resultMap.set("")
