@@ -2,22 +2,9 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { jsonMap, searchMap } from "../../mock_data/mockedJson";
 
 let currentCSV: string[][] | null = null;
-
 type commandOutputTuple = [string, string[][] | string];
-// type commandOutputTuple = string | string[][];
-
 type historyList = commandOutputTuple[];
 
-interface CommandInputProps {
-    // key: map.size, val: 2d string array
-    history: historyList;
-    // history: string[] | string[][][];
-    setHistory: Dispatch<SetStateAction<historyList>>;
-    // setHistory: Dispatch<SetStateAction<string | string[][]>>;
-}
-
-// string output = CommandInput.REPLFunctions.getOutput(...)
-// addtohistory(output)
 export interface REPLFunction {
     (args: Array<string>): string | string[][];
 }
@@ -32,11 +19,10 @@ export class REPLFunctions {
             case "view":
                 return this.viewCSV(args);
             case "search":
-                // console.log("search");
                 return this.searchCSV(args, command);
         }
 
-        return "";
+        return "Please enter a valid command";
     }
 
     static loadCSV(args: Array<string>): string {
@@ -84,27 +70,26 @@ export class REPLFunctions {
     }
 }
 
+interface CommandInputProps {
+    history: historyList;
+    setHistory: Dispatch<SetStateAction<historyList>>;
+}
+
 export function CommandInput(props: CommandInputProps) {
     const [command, setCommand] = useState<string>("");
     const [output, setOutput] = useState<string[][]>([]);
 
     const handleSubmit = () => {
         const commandOutput = REPLFunctions.processCommand(command);
-        // console.log(commandOutput);
-        // console.log("hi");
 
         const newItem: commandOutputTuple = [command, commandOutput];
-        props.setHistory([...props.history, newItem]);
-        // const newItem: commandOutputTuple = [command, commandOutput];
-        // const newItem = commandOutput;
-        console.log(newItem);
+        
+        // console.log(newItem);
         const tempList = props.history;
         tempList.push(newItem);
         props.setHistory(tempList);
 
-        // props.setHistory([...props.history, commandOutput])
-
-        console.log("history: ", props.history);
+        // console.log("history: ", props.history);
     };
 
     return (
