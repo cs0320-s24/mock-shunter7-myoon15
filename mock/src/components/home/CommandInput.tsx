@@ -88,7 +88,7 @@ export function CommandInput(props: CommandInputProps) {
 
         const newItem: commandOutputTuple = [
             command,
-            Array.isArray(commandOutput) ? commandOutput : [[commandOutput]],
+            commandOutput,
         ];
         props.setHistory([...props.history, newItem]);
         // const newItem: commandOutputTuple = [command, commandOutput];
