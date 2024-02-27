@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useState } from "react";
-import { jsonMap } from "../../mock_data/mockedJson";
+import { jsonMap, searchMap } from "../../mock_data/mockedJson";
 
 let currentCSV: string[][] | null = null;
 
@@ -28,17 +28,12 @@ export class REPLFunctions {
         const args = splitCommand.slice(1);
         switch (splitCommand[0]) {
             case "load_file":
-                // console.log("load file");
                 return this.loadCSV(args);
-                break;
             case "view":
-                // console.log("view");
-                return this.viewCSV();
-                break;
+                return this.viewCSV(args);
             case "search":
                 // console.log("search");
-                // return this.searchCSV(args);
-                break;
+                return this.searchCSV(args, command);
         }
 
         return "";
@@ -50,31 +45,43 @@ export class REPLFunctions {
         const csv = jsonMap.get(filePath);
         if (csv) {
             currentCSV = csv;
-            return `Successfully loaded '${filePath}'`;
+            return `The file '${filePath}' was successfully loaded`;
         } else {
             return `The file '${filePath}' not found`;
         }
     }
 
-    static viewCSV(): string | string[][] {
-        if (currentCSV != null) {
+    static viewCSV(args: Array<string>): string | string[][] {
+        if (args.length > 0) {
+            return "Invalid args: view should have no args (example: view)";
+        } else if (currentCSV != null) {
             return currentCSV;
         } else {
             return `No loaded csv file`;
         }
     }
 
-    static searchCSV(args: Array<string>): string | string[][] {
+    static searchCSV(
+        args: Array<string>,
+        command: string
+    ): string | string[][] {
+        if (!currentCSV) {
+            return "No loaded csv file";
+        }
         if (args.length > 2) {
-            return "Invalid number of args: please put '+' wherever necessary (valid command: search Rhode+Island state)";
+            return "Invalid args: please put '+' wherever necessary (example: search Rhode+Island state)";
         } else if (args.length < 2) {
-            return "Invalid number of args: valid command search <value> <column>";
+            return "Invalid args: search should have two arguments (example: search <value> <column>)";
         }
 
-        return [[], []];
-    }
+        const results = searchMap.get(command.toLowerCase());
 
-    // static searchCSV(args: Array<string>):
+        if (results) {
+            return results;
+        } else {
+            return `No results for '${args[0]} ${args[1]}'`;
+        }
+    }
 }
 
 export function CommandInput(props: CommandInputProps) {
@@ -86,10 +93,7 @@ export function CommandInput(props: CommandInputProps) {
         // console.log(commandOutput);
         // console.log("hi");
 
-        const newItem: commandOutputTuple = [
-            command,
-            commandOutput,
-        ];
+        const newItem: commandOutputTuple = [command, commandOutput];
         props.setHistory([...props.history, newItem]);
         // const newItem: commandOutputTuple = [command, commandOutput];
         // const newItem = commandOutput;
