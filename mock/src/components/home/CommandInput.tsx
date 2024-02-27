@@ -77,7 +77,6 @@ interface CommandInputProps {
 
 export function CommandInput(props: CommandInputProps) {
     const [command, setCommand] = useState<string>("");
-    const [output, setOutput] = useState<string[][]>([]);
 
     const handleSubmit = () => {
         const commandOutput = REPLFunctions.processCommand(command);
