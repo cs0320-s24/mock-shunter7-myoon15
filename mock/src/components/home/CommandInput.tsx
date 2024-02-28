@@ -29,7 +29,7 @@ export class REPLFunctions {
 
     static loadCSV(args: Array<string>): string {
         if (args.length != 1) {
-            return "Invalid args: load_file should have two arguments (example: load_file <filepath>)";
+            return "Invalid args: load_file should have one argument (example: load_file <filepath>)";
         }
         const filePath = args[0];
 
