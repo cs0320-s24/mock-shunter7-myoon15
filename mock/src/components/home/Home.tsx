@@ -9,36 +9,25 @@ import { View } from "./View";
 type commandOutputTuple = [string, string[][] | string];
 type historyList = commandOutputTuple[];
 
-export function Home() {
+export default function Home() {
     const [history, setHistory] = useState<historyList>([]);
-    // type HistoryItem = {
-    //     command: string;
-    //     output: string[][] | string;
-    // };
-    
-    // // Using a Map to store history items
-    // type HistoryMap = Map<number, HistoryItem>;
-    
-    // // In the React component state
-    // const [history, setHistory] = useState<HistoryMap>(new Map());
+    const [mode, setMode] = useState<string>("brief");
 
-    /*
-
-    output = CommandInput.getOutput(commandString)
-
-    getOutput{
-        return function load...
-
-    }
-
-    */
     return (
         <div className="home">
-            <CommandInput history={history} setHistory={setHistory}/>
-            <View />
-            <History />
+
+            <CommandInput
+                history={history}
+                setHistory={setHistory}
+                mode={mode}
+                setMode={setMode}
+            />
+            <hr></hr>
+
+            <History history={history} setHistory={setHistory} mode={mode}/>
+
         </div>
     );
 }
 
-export default Home;
+// export default Home;
