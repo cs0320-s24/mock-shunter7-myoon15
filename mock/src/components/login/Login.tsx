@@ -14,7 +14,7 @@ export function Login(props: loginProps) {
         e: React.MouseEvent<HTMLButtonElement, MouseEvent>
     ) => {
         e.preventDefault();
-        // console.log(e);
+
         if (userMap.get(username) == password) {
             props.setIsLoggedIn(true);
         }
@@ -31,16 +31,18 @@ export function Login(props: loginProps) {
                 <input
                     type="text"
                     onChange={(e) => setUserName(e.target.value)}
+                    aria-label="Username Input"
                 />
 
                 <label htmlFor="password">Password: </label>
                 <input
                     type="password"
                     onChange={(e) => setPassword(e.target.value)}
+                    aria-label="Password Input"
                 />
 
                 <button
-                    aria-label="Submit"
+                    aria-label="Login Button"
                     type="submit"
                     onClick={handleSubmit}
                 >

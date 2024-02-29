@@ -4,7 +4,6 @@
 import { useState } from "react";
 import { CommandInput } from "./CommandInput";
 import { History } from "./History";
-import { View } from "./View";
 
 type commandOutputTuple = [string, string[][] | string];
 type historyList = commandOutputTuple[];

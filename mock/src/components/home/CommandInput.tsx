@@ -112,18 +112,21 @@ export function CommandInput(props: CommandInputProps) {
     };
 
     return (
-        <div className="history">
-            <div className="command-input">
-                <input
-                    value={command}
-                    type="text"
-                    onChange={(e) => setCommand(e.target.value)}
-                />
-                <p>{error}</p>
-                <button type="submit" onClick={handleSubmit}>
-                    Submit
-                </button>
-            </div>
+        <div className="command-input">
+            <input
+                aria-label="Command Input"
+                value={command}
+                type="text"
+                onChange={(e) => setCommand(e.target.value)}
+            />
+            <p>{error}</p>
+            <button
+                aria-label="Submit Button"
+                type="submit"
+                onClick={handleSubmit}
+            >
+                Submit
+            </button>
         </div>
     );
 }

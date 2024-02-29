@@ -13,12 +13,12 @@ export function History(props: HistoryProps) {
     useEffect(() => {}, [props.history]);
 
     return (
-        <div className="history">
+        <div aria-label="History" className="history">
             {props.mode === "verbose"
                 ? props.history.map((elem, i) =>
                       // HTML table handling
                       Array.isArray(elem[1]) ? (
-                          <p key={i}>
+                          <p key={i} aria-label="Verbose With Array">
                               command: {elem[0]}
                               <br></br>
                               output:
@@ -37,7 +37,7 @@ export function History(props: HistoryProps) {
                               </table>
                           </p>
                       ) : (
-                          <p key={i}>
+                          <p key={i} aria-label="Verbose Without Array">
                               command: {elem[0]}
                               <br></br>
                               output: {elem[1]}
@@ -48,7 +48,7 @@ export function History(props: HistoryProps) {
                       Array.isArray(elem[1]) ? (
                           <p key={i}>
                               output:
-                              <table>
+                              <table aria-label={"table" + i}>
                                   <tbody>
                                       {elem[1].map((row, rowIndex) => (
                                           <tr key={rowIndex}>
@@ -63,7 +63,9 @@ export function History(props: HistoryProps) {
                               </table>
                           </p>
                       ) : (
-                          <p key={i}>output: {elem[1]}</p>
+                          <p key={i} aria-label="Brief Without Array">
+                              output: {elem[1]}
+                          </p>
                       )
                   )}
         </div>
