@@ -18,11 +18,12 @@ export function History(props: HistoryProps) {
                 ? props.history.map((elem, i) =>
                       // HTML table handling
                       Array.isArray(elem[1]) ? (
-                          <p key={i} aria-label="Verbose With Array">
-                              command: {elem[0]}
-                              <br></br>
+                          <div key={i}>
+                              <p aria-label={"vcommand" + i}>
+                                  command: {elem[0]}
+                              </p>
                               output:
-                              <table>
+                              <table aria-label={"vtable" + i}>
                                   <tbody>
                                       {elem[1].map((row, rowIndex) => (
                                           <tr key={rowIndex}>
@@ -35,20 +36,23 @@ export function History(props: HistoryProps) {
                                       ))}
                                   </tbody>
                               </table>
-                          </p>
+                          </div>
                       ) : (
-                          <p key={i} aria-label="Verbose Without Array">
-                              command: {elem[0]}
-                              <br></br>
-                              output: {elem[1]}
-                          </p>
+                          <div key={i}>
+                              <p aria-label={"vcommand" + i}>
+                                  command: {elem[0]}
+                              </p>
+                              <p aria-label={"voutput" + i}>
+                                  output: {elem[1]}{" "}
+                              </p>
+                          </div>
                       )
                   )
                 : props.history.map((elem, i) =>
                       Array.isArray(elem[1]) ? (
-                          <p key={i}>
+                          <div key={i}>
                               output:
-                              <table aria-label={"table" + i}>
+                              <table aria-label={"btable" + i}>
                                   <tbody>
                                       {elem[1].map((row, rowIndex) => (
                                           <tr key={rowIndex}>
@@ -61,11 +65,13 @@ export function History(props: HistoryProps) {
                                       ))}
                                   </tbody>
                               </table>
-                          </p>
+                          </div>
                       ) : (
-                          <p key={i} aria-label="Brief Without Array">
-                              output: {elem[1]}
-                          </p>
+                          <div key={i}>
+                              <p aria-label={"boutput" + i}>
+                                  output: {elem[1]}
+                              </p>
+                          </div>
                       )
                   )}
         </div>
