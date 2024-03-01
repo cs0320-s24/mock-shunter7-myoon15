@@ -1,5 +1,6 @@
 import { useState, Dispatch, SetStateAction } from "react";
 import { userMap } from "../../mock_data/mockedJson";
+import "../../styles/login.css";
 
 interface loginProps {
     isLoggedIn: boolean;
@@ -9,6 +10,8 @@ interface loginProps {
 export function Login(props: loginProps) {
     const [username, setUserName] = useState<string>("");
     const [password, setPassword] = useState<string>("");
+    const [error, setError] = useState<string>("");
+    const [errorClass, setErrorClass] = useState<string>("hidden");
 
     const handleSubmit = (
         e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -18,38 +21,66 @@ export function Login(props: loginProps) {
         if (userMap.get(username) == password) {
             props.setIsLoggedIn(true);
         }
+        else {
+            setError("Username or password is invalid!")
+            setErrorClass("not-hidden");
+        }
     };
 
     return (
-        <div className="login-container">
-            <header>
+        <main className="login-container">
+            <header className="login-header">
                 <h1>Mock</h1>
             </header>
-            <h2>Login</h2>
-            <form action="">
-                <label htmlFor="text">Username: </label>
-                <input
-                    type="text"
-                    onChange={(e) => setUserName(e.target.value)}
-                    aria-label="Username Input"
-                />
+            <section className="form-container">
+                <form className="login-form">
+                    <div className="form-header">
+                        <h6>Login</h6>
+                    </div>
 
-                <label htmlFor="password">Password: </label>
-                <input
-                    type="password"
-                    onChange={(e) => setPassword(e.target.value)}
-                    aria-label="Password Input"
-                />
+                    <div className="label-input-pair">
+                        <label htmlFor="text" className="field-labels">
+                            Username:{" "}
+                        </label>
+                        <input
+                            type="text"
+                            onChange={(e) => setUserName(e.target.value)}
+                            aria-label="Username Input"
+                            className="field-inputs"
+                            required
+                        />
+                    </div>
 
-                <button
-                    aria-label="Login Button"
-                    type="submit"
-                    onClick={handleSubmit}
-                >
-                    Submit
-                </button>
-            </form>
-        </div>
+                    <div className="label-input-pair">
+                        <label htmlFor="password" className="field-labels">
+                            Password:{" "}
+                        </label>
+                        <input
+                            type="password"
+                            onChange={(e) => setPassword(e.target.value)}
+                            aria-label="Password Input"
+                            className="field-inputs"
+                            required
+                        />
+                    </div>
+
+                    <div className={errorClass}>
+                        <p className="form-error">{error}</p>
+                    </div>
+
+                    <div className="btn-div">
+                        <button
+                            aria-label="Login Button"
+                            type="submit"
+                            onClick={handleSubmit}
+                            className="form-button"
+                        >
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </section>
+        </main>
     );
 }
 

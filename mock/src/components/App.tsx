@@ -12,7 +12,7 @@ function App() {
     return (
         <div className="App">
             {isLoggedIn ? (
-                <Home />
+                <Home isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
             ) : (
                 <Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
             )}

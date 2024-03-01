@@ -1,19 +1,25 @@
-// interface applicationProps {
-//     isLoggedIn: boolean;
-// }
-import { useState } from "react";
+import { Dispatch, useState, SetStateAction } from "react";
 import { CommandInput } from "./CommandInput";
 import { History } from "./History";
 
 type commandOutputTuple = [string, string[][] | string];
 type historyList = commandOutputTuple[];
 
-export default function Home() {
+interface homeProps {
+    isLoggedIn: boolean;
+    setIsLoggedIn: Dispatch<SetStateAction<boolean>>;
+}
+
+export default function Home(props: homeProps) {
     const [history, setHistory] = useState<historyList>([]);
     const [mode, setMode] = useState<string>("brief");
 
     return (
         <div className="home">
+            <nav className="nav-bar">
+                <p className="logo">MOCK</p>
+                <button type="submit" className="logout-btn" onClick={() => props.setIsLoggedIn(false)}>Logout</button>
+            </nav>
 
             <CommandInput
                 history={history}
@@ -24,9 +30,6 @@ export default function Home() {
             <hr></hr>
 
             <History history={history} setHistory={setHistory} mode={mode}/>
-
         </div>
     );
 }
-
-// export default Home;
