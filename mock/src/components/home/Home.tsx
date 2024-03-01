@@ -1,6 +1,7 @@
 import { Dispatch, useState, SetStateAction } from "react";
 import { CommandInput } from "./CommandInput";
 import { History } from "./History";
+import "../../styles/home.css";
 
 type commandOutputTuple = [string, string[][] | string];
 type historyList = commandOutputTuple[];
@@ -15,10 +16,20 @@ export default function Home(props: homeProps) {
     const [mode, setMode] = useState<string>("brief");
 
     return (
-        <div className="home">
+        <div className="home-container">
             <nav className="nav-bar">
-                <p className="logo">MOCK</p>
-                <button type="submit" className="logout-btn" onClick={() => props.setIsLoggedIn(false)}>Logout</button>
+                <div>
+                    <h1 className="logo">MOCK</h1>
+                </div>
+                <div>
+                    <button
+                        type="submit"
+                        className="logout-btn"
+                        onClick={() => props.setIsLoggedIn(false)}
+                    >
+                        Logout
+                    </button>
+                </div>
             </nav>
 
             <CommandInput
@@ -27,9 +38,8 @@ export default function Home(props: homeProps) {
                 mode={mode}
                 setMode={setMode}
             />
-            <hr></hr>
 
-            <History history={history} setHistory={setHistory} mode={mode}/>
+            <History history={history} setHistory={setHistory} mode={mode} />
         </div>
     );
 }

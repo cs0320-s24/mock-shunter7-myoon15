@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { jsonMap, searchMap } from "../../mock_data/mockedJson";
+import "../../styles/command_input.css";
 
 let currentCSV: string[][] | null = null;
 type commandOutputTuple = [string, string[][] | string];
@@ -121,21 +122,33 @@ export function CommandInput(props: CommandInputProps) {
     };
 
     return (
-        <div className="command-input">
-            <input
-                aria-label="Command Input"
-                value={command}
-                type="text"
-                onChange={(e) => setCommand(e.target.value)}
-            />
-            <p>{error}</p>
-            <button
-                aria-label="Submit Button"
-                type="submit"
-                onClick={handleSubmit}
-            >
-                Submit
-            </button>
+        <div className="command-input-container">
+            <div className="input-error-pair">
+                <div>
+                    <input
+                        aria-label="Command Input"
+                        value={command}
+                        type="text"
+                        onChange={(e) => setCommand(e.target.value)}
+                        className="command-input"
+                    />
+                </div>
+
+                <div>
+                    <p className="command-error">{error}</p>
+                </div>
+            </div>
+
+            <div className="btn-container">
+                <button
+                    aria-label="Submit Button"
+                    type="submit"
+                    onClick={handleSubmit}
+                    className="submit-btn"
+                >
+                    Submit
+                </button>
+            </div>
         </div>
     );
 }

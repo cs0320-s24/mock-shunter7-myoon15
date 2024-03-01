@@ -1,0 +1,40 @@
+.command-input-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 20px;    
+}
+.input-error-pair {
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+}
+.command-input {
+    height: 50px;
+    border-radius: 10px;
+    padding-left: 15px;
+    font-size: 18px;
+    width: 90%;
+}
+.command-error {
+    color: red;
+    text-align: center;
+    font-size: 18px;
+}
+.btn-container {
+    width: 10%;
+}
+.submit-btn {
+    background-color: black;
+    color: white;
+    border: 1px solid;
+    border-radius: 10px;
+    height: 55px;
+    font-size: 18px;
+    width: 55%;
+    margin-left: -40px;
+}
+.submit-btn:hover {
+    background-color: rgb(37, 37, 37);
+    cursor: pointer;
+}
