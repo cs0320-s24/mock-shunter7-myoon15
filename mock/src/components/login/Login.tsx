@@ -20,9 +20,8 @@ export function Login(props: loginProps) {
 
         if (userMap.get(username) == password) {
             props.setIsLoggedIn(true);
-        }
-        else {
-            setError("Username or password is invalid!")
+        } else {
+            setError("Username or password is invalid!");
             setErrorClass("not-hidden");
         }
     };
