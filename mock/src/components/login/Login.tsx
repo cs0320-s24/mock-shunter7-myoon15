@@ -18,18 +18,23 @@ export function Login(props: loginProps) {
     ) => {
         e.preventDefault();
 
-        if (userMap.get(username) == password) {
+        if (userMap.get(username.trim()) == password.trim()) {
             props.setIsLoggedIn(true);
+        } else if (username.trim() === "" || password.trim() === "") {
+            setError("Please enter both username and password");
+            setErrorClass("not-hidden");
+            return;
         } else {
             setError("Username or password is invalid!");
             setErrorClass("not-hidden");
+            return;
         }
     };
 
     return (
         <main className="login-container">
             <header className="login-header">
-                <h1>Mock</h1>
+                <h1>MOCK</h1>
             </header>
             <section className="form-container">
                 <form className="login-form">

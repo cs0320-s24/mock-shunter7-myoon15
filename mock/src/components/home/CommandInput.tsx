@@ -32,7 +32,7 @@ class REPLFunctions {
         if (commandFunction) {
             return commandFunction(args, command);
         }
-        return `Invalid: Command '${commandName}' not found.`;
+        return "Invalid: Please enter a valid command (basic commands: load_file, view, search, mode)";
     }
 }
 

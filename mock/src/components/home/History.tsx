@@ -18,12 +18,17 @@ export function History(props: HistoryProps) {
             {props.mode === "verbose"
                 ? props.history.map((elem, i) =>
                       Array.isArray(elem[1]) ? (
-                          <div key={i} className="command-output-pair">
-                              <p aria-label={"vcommand" + i} className="text-output">
-                                  command: {elem[0]}
+                          <div key={i} className="verbose-output">
+                              <p
+                                  aria-label={"vcommand" + i}
+                                  className="command-output"
+                              >
+                                  {elem[0]}
                               </p>
-                              output:
-                              <table aria-label={"vtable" + i} className="array-output">
+                              <table
+                                  aria-label={"vtable" + i}
+                                  className="verbose-array-output"
+                              >
                                   <tbody>
                                       {elem[1].map((row, rowIndex) => (
                                           <tr key={rowIndex}>
@@ -39,11 +44,17 @@ export function History(props: HistoryProps) {
                           </div>
                       ) : (
                           <div key={i} className="verbose-output">
-                              <p aria-label={"vcommand" + i} className="text-output">
-                                  command: {elem[0]}
+                              <p
+                                  aria-label={"vcommand" + i}
+                                  className="command-output"
+                              >
+                                  {elem[0]}
                               </p>
-                              <p aria-label={"voutput" + i} className="text-output">
-                                  output: {elem[1]}{" "}
+                              <p
+                                  aria-label={"voutput" + i}
+                                  className="verbose-text-output"
+                              >
+                                  {elem[1]}
                               </p>
                           </div>
                       )
@@ -51,8 +62,10 @@ export function History(props: HistoryProps) {
                 : props.history.map((elem, i) =>
                       Array.isArray(elem[1]) ? (
                           <div key={i} className="brief-output">
-                              output:
-                              <table aria-label={"btable" + i} className="array-output">
+                              <table
+                                  aria-label={"btable" + i}
+                                  className="brief-array-output"
+                              >
                                   <tbody>
                                       {elem[1].map((row, rowIndex) => (
                                           <tr key={rowIndex}>
@@ -68,8 +81,11 @@ export function History(props: HistoryProps) {
                           </div>
                       ) : (
                           <div key={i} className="brief-output">
-                              <p aria-label={"boutput" + i} className="text-output">
-                                  output: {elem[1]}
+                              <p
+                                  aria-label={"boutput" + i}
+                                  className="brief-text-output"
+                              >
+                                  {elem[1]}
                               </p>
                           </div>
                       )

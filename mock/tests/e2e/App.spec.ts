@@ -54,6 +54,35 @@ test("on page load, i dont see the input box until login", async ({ page }) => {
     await expect(page.getByLabel("Password Input")).not.toBeVisible();
 });
 
+test("entering an invalid command causes error and doesn't add to history", async ({
+    page,
+}) => {
+    // login
+    await page.getByLabel("Username Input").fill("alex");
+    await page.getByLabel("Password Input").fill("alex");
+    await page.getByLabel("Login Button").click();
+
+    await page.getByLabel("Command Input").fill("notacommand");
+    await page.getByLabel("Submit Button").click();
+
+    await expect(
+        page.locator(
+            "text=Invalid: Please enter a valid command (basic commands: load_file, view, search, mode)"
+        )
+    ).toBeVisible();
+    await expect(page.getByLabel("boutput0")).not.toBeVisible();
+        
+    await page.getByLabel("Command Input").fill("view normal");
+    await page.getByLabel("Submit Button").click();
+    
+    await expect(
+        page.locator(
+            "text=Invalid: view should have no argruments (example: view)"
+        )
+    ).toBeVisible();
+    await expect(page.getByLabel("boutput0")).not.toBeVisible();
+});
+
 test("loading an invalid filepath", async ({ page }) => {
     // login
     await page.getByLabel("Username Input").fill("alex");
@@ -105,7 +134,9 @@ test("viewing without loading", async ({ page }) => {
     await page.getByLabel("Command Input").fill("view");
     await page.getByLabel("Submit Button").click();
 
-    await expect(page.locator("text=Invalid: No loaded csv file")).toBeVisible();
+    await expect(
+        page.locator("text=Invalid: No loaded csv file")
+    ).toBeVisible();
 });
 
 test("viewing with incorrect arguments", async ({ page }) => {
@@ -281,7 +312,9 @@ test("searching before loading", async ({ page }) => {
     // search file without load
     await page.getByLabel("Command Input").fill("search ma 2");
     await page.getByLabel("Submit Button").click();
-    await expect(page.locator("text=Invalid: No loaded csv file")).toBeVisible();
+    await expect(
+        page.locator("text=Invalid: No loaded csv file")
+    ).toBeVisible();
 });
 
 test("searching invalid search term", async ({ page }) => {

@@ -36,7 +36,8 @@
     gap: 20px;
 }
 .field-labels {
-    font-size: 18px;
+    font-size: 16px;
+    font-weight: 700;
 }
 .field-inputs {
     height: 40px;

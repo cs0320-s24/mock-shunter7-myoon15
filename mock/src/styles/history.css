@@ -1,11 +1,47 @@
 .history-container {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    justify-content: center;
-    margin-top: 20px;    
+    width: 71rem;
+    height: 47rem;
+    justify-content: baseline;
+    align-items: baseline;
+    margin-top: 20px;
+    margin-left: 13rem;
+    overflow: scroll;
+    font-size: 16px;  
+    padding: 5px;
 }
-.command-output-pair {
+.verbose-output {
     display: flex;
     flex-direction: column;
+    justify-content: baseline;
+    width: 100%;
+    border-bottom: 3px solid;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.brief-output {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-bottom: 2px solid;
+}
+.verbose-array-output {
+    margin-bottom: 20px;
+}
+.command-output {
+    font-weight: 700;
+}
+.brief-array-output {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.brief-text-output {
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+table, tr, td {
+    border: 1px solid;
+    border-collapse: collapse;
 }
