@@ -3,9 +3,17 @@ import { CommandInput } from "./CommandInput";
 import { History } from "./History";
 import "../../styles/home.css";
 
+/**
+ * Custom type to fill our historyList with tuples of commandName
+ * to either a 2d string array or string message
+ */
 type commandOutputTuple = [string, string[][] | string];
 type historyList = commandOutputTuple[];
 
+/**
+ * Props for the function Home. Includes the boolean
+ * and the ability to set the boolean for isLoggedIn.
+ */
 interface homeProps {
   isLoggedIn: boolean;
   setIsLoggedIn: Dispatch<SetStateAction<boolean>>;

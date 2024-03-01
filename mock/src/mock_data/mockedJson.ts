@@ -23,6 +23,9 @@ export const missing: string[][] = [
     ["772 Smith", "Richmond", "VA", "438728"],
 ];
 
+/**
+ * Mock csv data
+ */
 export const jsonMap = new Map<string, string[][]>();
 jsonMap.set("normal", normal);
 jsonMap.set("malformed", malformed);
@@ -30,11 +33,17 @@ jsonMap.set("noHeaders", noHeaders);
 jsonMap.set("empty", empty);
 jsonMap.set("missing", missing);
 
+/**
+ * Mock user data
+ */
 export const userMap = new Map<string, string>();
 userMap.set("john", "john");
 userMap.set("alex", "alex");
 userMap.set("bob", "bob");
 
+/**
+ * Mock search results
+ */
 export const searchMap = new Map<string, string[][]>();
 searchMap.set("search ma 2", [["847 Thayer", "Boston", "MA", "788477"]]);
 searchMap.set("search boston city", [

@@ -2,6 +2,9 @@ import { useState, Dispatch, SetStateAction } from "react";
 import { userMap } from "../../mock_data/mockedJson";
 import "../../styles/login.css";
 
+/**
+ * Props for Login function. Inlcudes setting isLoggedIn.
+ */
 interface loginProps {
   isLoggedIn: boolean;
   setIsLoggedIn: Dispatch<SetStateAction<boolean>>;
@@ -18,6 +21,14 @@ export function Login(props: loginProps) {
   const [error, setError] = useState<string>("");
   const [errorClass, setErrorClass] = useState<string>("hidden");
 
+  /**
+   * This is for handling whenever a login form is submitted by clicking on the submit button.
+   * Checks if the login creditials are correct, if not it returns an error message. Also, 
+   * sets isLoggedIn to true, if the creditials are correct.
+   * 
+   * @param e the incoming event after clicking submit
+   * @returns setting error and errorclass, or setting isLoggedIn to true
+   */
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
 

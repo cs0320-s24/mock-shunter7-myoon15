@@ -1,7 +1,6 @@
 import { expect, test } from "@playwright/test";
 
 test.beforeEach(async ({ page }) => {
-  // ... you'd put it here.
   await page.goto("http://localhost:8000/");
 });
 
